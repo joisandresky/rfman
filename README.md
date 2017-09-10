@@ -1,14 +1,10 @@
-RFMAN - RFID Admin Helpdesk
-
-Admin Dahsboard Using SB ADMIN
-
-# [Start Bootstrap](http://startbootstrap.com/) - [SB Admin 2](http://startbootstrap.com/template-overviews/sb-admin-2/)
+# [RFMAN - RFID Admin Helpdesk] using- [SB Admin 2](http://startbootstrap.com/template-overviews/sb-admin-2/)
 [![CDNJS](https://img.shields.io/cdnjs/v/startbootstrap-sb-admin-2.svg)](https://cdnjs.com/libraries/startbootstrap-sb-admin-2)
 
 [SB Admin 2](http://startbootstrap.com/template-overviews/sb-admin-2/) is an open source, admin dashboard template for [Bootstrap](http://getbootstrap.com/) created by [Start Bootstrap](http://startbootstrap.com/).
 
 ## Getting Started
-
+[RFID ADMIN DASHBOARD]
 To begin using this template, choose one of the following options to get started:
 * [Download the latest release on Start Bootstrap](http://startbootstrap.com/template-overviews/sb-admin-2/)
 * Clone the repo: `git clone https://github.com/BlackrockDigital/startbootstrap-sb-admin-2.git`
