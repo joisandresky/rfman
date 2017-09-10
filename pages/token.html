@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>RFMan - RFID Token</title>
+
+    <!-- Bootstrap Core CSS -->
+    <!-- <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet"> -->
+    <link href="../vendor/bs-material/bootstrap.min.css" rel="stylesheet">
+
+    <!-- MetisMenu CSS -->
+    <link href="../vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
+
+    <!-- DataTables CSS -->
+    <link href="../vendor/datatables-plugins/dataTables.bootstrap.css" rel="stylesheet">
+    <link href="../vendor/datatables/css/jquery.dataTables.min.css" rel="stylesheet">
+
+    <!-- DataTables Responsive CSS -->
+    <link href="../vendor/datatables-responsive/dataTables.responsive.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="../dist/css/sb-admin-2.css" rel="stylesheet">
+
+    <!-- Loading CSS -->
+    <link rel="stylesheet" href="../css/loader.css">
+
+    <!-- SweetAlert CSS -->
+    <link rel="stylesheet" href="../vendor/sweetalert/sweetalert.css">
+
+    <!-- Custom Fonts -->
+    <link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- jQuery -->
+    <script src="../vendor/jquery/jquery.min.js"></script>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <script type="text/javascript">
+      if(window.localStorage.length == 0){
+        window.location.href = "login.html"
+      }
+    </script>
+
+</head>
+
+<body>
+  <div class="se-pre-con"></div>
+  <script type="text/javascript">
+    $(window).on('load', function(){
+      $('.se-pre-con').fadeOut('slow');
+    })
+  </script>
+
+    <div id="wrapper">
+
+        <!-- Navigation -->
+        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="index.html">RFMan <i class="fa fa-send-o"></i></a>
+            </div>
+            <!-- /.navbar-header -->
+
+            <ul class="nav navbar-top-links navbar-right">
+                <!-- /.dropdown -->
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        <i class="fa fa-user fa-fw"></i> <span class="userName"></span> <i class="fa fa-caret-down"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-user">
+                        <li><a href="#" class="logoutBtn"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                        </li>
+                    </ul>
+                    <!-- /.dropdown-user -->
+                </li>
+                <!-- /.dropdown -->
+            </ul>
+            <!-- /.navbar-top-links -->
+
+            <div class="navbar-default sidebar" role="navigation">
+                <div class="sidebar-nav navbar-collapse">
+                  <ul class="nav" id="side-menu">
+                      <li class="sidebar-search">
+
+                      </li>
+                      <li>
+                          <a href="index.html"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                      </li>
+                      <li>
+                          <a href="#"><i class="fa fa-database fa-fw"></i> RFID<span class="fa arrow"></span></a>
+                          <ul class="nav nav-second-level">
+                              <li>
+                                  <a href="rfid.html"><i class="fa fa-user"></i> RFID Users</a>
+                              </li>
+                              <li>
+                                  <a href="token.html"><i class="fa fa-key"></i> Token Users</a>
+                              </li>
+                          </ul>
+                          <!-- /.nav-second-level -->
+                      </li>
+                      <li>
+                        <a href="operators.html"><i class="fa fa-user" aria-hidden="true"></i> Operators</a>
+                      </li>
+                      <li>
+                        <a href="#"><i class="fa fa-clipboard fa-fw"></i> Report <span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li>
+                                <a href="report-mhs.html"><i class="fa fa-user"></i> Kehadiran Mahasiswa</a>
+                            </li>
+                        </ul>
+                      </li>
+                      <li>
+                          <a href="#"><i class="fa fa-files-o fa-fw"></i> Sample Pages<span class="fa arrow"></span></a>
+                          <ul class="nav nav-second-level">
+                              <li>
+                                  <a href="blank.html">Blank Page</a>
+                              </li>
+                              <li>
+                                  <a href="login.html">Login Page</a>
+                              </li>
+                          </ul>
+                          <!-- /.nav-second-level -->
+                      </li>
+                  </ul>
+                </div>
+                <!-- /.sidebar-collapse -->
+            </div>
+            <!-- /.navbar-static-side -->
+        </nav>
+
+        <!-- Page Content -->
+        <div id="page-wrapper">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h2 class="page-header">Token Users</h2>
+                    </div>
+                    <!-- /.col-lg-12 -->
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="table-responsive">
+                            <button id="tmbhBtn" class="btn btn-primary btn-sm"><i class="fa fa-plus"> Tambah</i></button>
+                            <button id="refreshBtn" class="btn btn-success btn-sm"><i class="fa fa-refresh"> Refresh</i></button>
+                            <button id="delBtn" class="btn btn-danger btn-sm pull-right"><i class="fa fa-remove"> Hapus</i></button>
+                            <br> <br>
+                            <table id="tokenTable2" class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Token ID</th>
+                                        <th>Used</th>
+                                        <th>RFID</th>
+                                        <th>Status</th>
+                                        <th>NPM/NID</th>
+                                        <th>Aksi Token</th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.row -->
+            </div>
+            <!-- /.container-fluid -->
+            <!-- Modal Tambah Data -->
+            <div class="modal fade" id="panelTambahData" tabindex="-1" role="dialog">
+                <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="judulModal">Tambah Data</h4>
+                    </div>
+                    <div class="modal-body">
+                    <div class="form-group">
+                        <label for="token">Token</label>
+                        <input type="text" class="form-control" name="rfid" id="token" disabled>
+                    </div>
+                    <div class="form-group">
+                        <label for="nid">NPM/NID</label>
+                        <input type="text" class="form-control" name="nid" id="nid">
+                    </div>
+                    <div class="form-group">
+                      <label for="status_aksi">Status Token</label>
+                      <select name="st_aksi" id="st_aksi" class="form-control">
+                      </select>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success pull-left" id="btnCheck">Check NPM/NID</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
+                    <button type="button" class="btn btn-primary" id="btnSave">Simpan</button>
+                    </div>
+                </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
+            </div><!-- /.modal -->
+        </div>
+        <!-- /#page-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+
+    <!-- Sweetalert JS -->
+    <script src="../vendor/sweetalert/sweetalert.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
+
+    <!-- Metis Menu Plugin JavaScript -->
+    <script src="../vendor/metisMenu/metisMenu.min.js"></script>
+
+    <!-- DataTables JavaScript -->
+    <script src="../vendor/datatables/js/jquery.dataTables.min.js"></script>
+    <script src="../vendor/datatables-plugins/dataTables.bootstrap.min.js"></script>
+    <script src="../vendor/datatables-responsive/dataTables.responsive.js"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script src="../dist/js/sb-admin-2.js"></script>
+
+    <!-- My Custom Javascript -->
+    <script src="../js/src/token.js"></script>
+
+    <script type="text/javascript">
+      var user = JSON.parse(window.localStorage.user);
+      $('.logoutBtn').click(function(){
+        window.localStorage.clear();
+        window.location.href = "login.html";
+      })
+      $('.userName').html(user.nama_operator);
+    </script>
+
+</body>
+
+</html>
