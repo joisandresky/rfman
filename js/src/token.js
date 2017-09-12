@@ -103,7 +103,7 @@ function getTokenUsers(){
        if(nid == ""){
            return;
        }
-       checkNI(nid);
+       var stts = getStatusKartu(nid) == true ? true : false;
        if(dtAksi == '3'){
          isCheck = false;
          isChecked(isCheck);
@@ -128,6 +128,37 @@ function getTokenUsers(){
       }
       getDosenInval(dt[0][0]);
     });
+}
+
+function getStatusKartu(nid){
+  var bl = null;
+  var dt = null;
+  $.ajax({
+    method: 'POST',
+    url: serverUrl + 'token/cek-blacklist.php',
+    data: {
+      nid: nid
+    },
+    success: function(res){
+      dt = JSON.parse(res);
+      console.log(dt)
+      if(dt.status === "OK"){
+        bl = true;
+      } else {
+        bl = false;
+      }
+    },
+    error: function(res){
+      console.log(res)
+    },
+    complete: function(){
+      if(bl == false){
+        checkNI(nid);
+      } else {
+        swal('Ooppss..!', dt.msg, 'warning');
+      }
+    }
+  })
 }
 
 function getDosenInval(tokenId){
