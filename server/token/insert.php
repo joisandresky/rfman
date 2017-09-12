@@ -15,6 +15,7 @@ if(count($data) > 0){
     $no_induk = mysqli_real_escape_string($conn, $data->no_induk);
     $used = mysqli_real_escape_string($conn, $data->used);
     $aksi = mysqli_real_escape_string($conn, $data->id_aksi);
+    $nidp = mysqli_real_escape_string($conn, $data->nidp);
     //$status = mysqli_real_escape_string($conn, $data->status);
 
     $cari = "SELECT status, rf_id, no_induk from rf_id_users WHERE no_induk = '$no_induk'";
@@ -27,7 +28,7 @@ if(count($data) > 0){
             $nid = $row->no_induk;
         }
 
-        $sql = "INSERT INTO users_token VALUES('$token_id', now(), '$used', '$aksi', '$id', '$st', '$no_induk')";
+        $sql = "INSERT INTO users_token VALUES('$token_id', now(), '$used', '$aksi', '$id', '$st', '$no_induk', '$nidp')";
         if(mysqli_query($conn, $sql)){
             echo json_encode(array('success' => true, 'msg' => 'Data Berhasil Disimpan'));
         }else {

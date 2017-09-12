@@ -146,6 +146,7 @@
                         <div class="table-responsive">
                             <button id="tmbhBtn" class="btn btn-primary btn-sm"><i class="fa fa-plus"> Tambah</i></button>
                             <button id="refreshBtn" class="btn btn-success btn-sm"><i class="fa fa-refresh"> Refresh</i></button>
+                            <button id="cekInval" class="btn btn-info btn-sm"><i class="fa fa-user"></i> Cek Dosen Inval</button>
                             <button id="delBtn" class="btn btn-danger btn-sm pull-right"><i class="fa fa-remove"> Hapus</i></button>
                             <br> <br>
                             <table id="tokenTable2" class="table table-striped">
@@ -189,9 +190,16 @@
                       <select name="st_aksi" id="st_aksi" class="form-control">
                       </select>
                     </div>
+                    <div id="aksi-tambahan">
+                      <div class="form-group">
+                        <label for="nid-p">NID Pengganti</label>
+                        <input type="text" name="nid-p" id="nid-p" class="form-control">
+                      </div>
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-success pull-left" id="btnCheck">Check NPM/NID</button>
+                    <button class="btn btn-info pull-left" id="btnCk2">Check NID Inval</button>
                     <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
                     <button type="button" class="btn btn-primary" id="btnSave">Simpan</button>
                     </div>

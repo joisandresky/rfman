@@ -3,11 +3,32 @@ var totalPerkuliahan = 0;
 $(document).ready(function(){
   getPerkuliahan();
   getTotalMhs();
+  $('#tglNow').html(getDate());
   setInterval(function(){
     getPerkuliahan();
     getTotalMhs();
   }, 2000)
 })
+
+function getDate(){
+  var hari = [
+    'Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'
+  ];
+  var tgl = new Date();
+  var dd = tgl.getDate();
+  var mm = tgl.getMonth()+1;
+  var yyyy = tgl.getFullYear();
+  var hr = tgl.getDay();
+  var day = hari[hr];
+  if(dd < 10){
+    dd = '0' + dd;
+  }
+  if(mm < 10){
+    mm = '0' + mm;
+  }
+  tgl = day + ', ' + dd + '/' + mm + '/' + yyyy;
+  return tgl;
+}
 
 function getPerkuliahan(){
   $.ajax({

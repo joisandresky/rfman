@@ -1,10 +1,36 @@
 var token = '69';
 var serverUrl = 'http://localhost/sb-admin/server/';
+var dtAksi = '';
+var isCheck = false;
+
 $(document).ready(function(){
     getTokenUsers();
+    $('#aksi-tambahan').hide();
+    $('#btnCk2').hide();
 });
 
+function isChecked(check){
+  if(check == false){
+    $('#btnSave').prop('disabled', true);
+  } else {
+    $('#btnSave').prop('disabled', false);
+  }
+}
+
 function getTokenUsers(){
+    $('#st_aksi').on('change', function(){
+      dtAksi = $('#st_aksi').val();
+      if(dtAksi == '3'){
+        $('#aksi-tambahan').show();
+        $('#btnCk2').show();
+        isChecked(false);
+      } else {
+        $('#aksi-tambahan').hide();
+        $('#btnCk2').hide();
+      }
+      $('#nid-p').val("");
+    })
+
     var  tb = $('#tokenTable2').DataTable({
         processing: true,
         serverSide: true,
@@ -44,20 +70,26 @@ function getTokenUsers(){
 
     $('#tmbhBtn').click(function(){
         loadAksiToken();
+        $('#nid-p').val("");
+        dtAksi = '';
+        $('#aksi-tambahan').hide();
         var getToken = generateToken();
         $('#panelTambahData').modal('toggle');
         $('#token').val(getToken);
+        isChecked(false);
     })
 
     $('#btnSave').click(function(){
         var tokenId = $('#token').val();
         var nid = $('#nid').val();
         var sta = $('#st_aksi').val();
+        var nidp = dtAksi == 3 ? $('#nid-p').val() : '-';
         var newToken = {
             token_id: tokenId,
             no_induk: nid,
             used: 'N',
-            id_aksi: sta
+            id_aksi: sta,
+            nidp: nidp
         }
         if(nid != ""){
             saveToken(newToken);
@@ -71,39 +103,84 @@ function getTokenUsers(){
        if(nid == ""){
            return;
        }
-       $.ajax({
-           method: 'POST',
-           url: serverUrl + 'token/cari-mhs.php',
-           data: {
-               no_induk: nid
-           },
-           success: function(res){
-                var data = JSON.parse(res);
-                if(data.success){
-                    switch(data.status){
-                        case "mahasiswa":
-                            swal({
-                                title: data.mhs.NMMHSCMSMHS,
-                                text: "NPM : " + nid + " <br> Kelas : " + data.mhs.KLSKULTRJDK,
-                                html: true,
-                                type: "info"
-                            })
-                            break;
-                        case "dosen":
-                            swal({
-                                title: data.mhs.DSNAMA,
-                                text: "NID : " + nid,
-                                html: true,
-                                type: "info"
-                            })
-                            break;
-                    }
-                } else {
-                    swal('NPM/NID Tidak Ditemukan', 'Cek Kembali NO INDUK', 'error');
-                }
-           }
-       })
+       checkNI(nid);
+       if(dtAksi == '3'){
+         isCheck = false;
+         isChecked(isCheck);
+         return;
+       }
+       isChecked(true);
     });
+
+    $('#btnCk2').click(function(){
+      var nid2 = $('#nid-p').val();
+      if(nid2 == ""){
+        return;
+      }
+      checkNI(nid2);
+      isChecked(true);
+    });
+
+    $('#cekInval').click(function(){
+      var dt = tb.rows('.selected').data();
+      if(dt.length == 0 || dt[0][5] != "Dosen Di Inval"){
+        return;
+      }
+      getDosenInval(dt[0][0]);
+    });
+}
+
+function getDosenInval(tokenId){
+  $.ajax({
+    method: 'POST',
+    url: serverUrl + 'token/cari-dosenInval.php',
+    data: {
+      token_id: tokenId
+    },
+    success: function(res){
+      var dt = JSON.parse(res);
+      checkNI(dt);
+    },
+    error: function(res){
+      console.log(res)
+    }
+  })
+}
+
+function checkNI(nid){
+  $.ajax({
+      method: 'POST',
+      url: serverUrl + 'token/cari-mhs.php',
+      data: {
+          no_induk: nid
+      },
+      success: function(res){
+           var data = JSON.parse(res);
+           if(data.success){
+               switch(data.status){
+                   case "mahasiswa":
+                       swal({
+                           title: data.mhs.NMMHSCMSMHS,
+                           text: "NPM : " + nid + " <br> Kelas : " + data.mhs.KLSKULTRJDK,
+                           html: true,
+                           type: "info"
+                       })
+                       break;
+                   case "dosen":
+                       swal({
+                           title: data.mhs.DSNAMA,
+                           text: "NID : " + nid,
+                           html: true,
+                           type: "info"
+                       })
+                       isCheck = true;
+                       break;
+               }
+           } else {
+               swal('NPM/NID Tidak Ditemukan', 'Cek Kembali NO INDUK', 'error');
+           }
+      }
+  })
 }
 
 function loadAksiToken(){
