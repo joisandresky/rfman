@@ -10,8 +10,9 @@ if(count($data) > 0){
     $username = mysqli_real_escape_string($conn, $data->username);
     $password = mysqli_real_escape_string($conn, $data->password);
     $nama_operator = mysqli_real_escape_string($conn, $data->nama_operator);
+    $pwd = md5($password);
 
-    $sql = "INSERT INTO tb_operators VALUES('$id_op', '$username', '$password', '$nama_operator', now(), now());";
+    $sql = "INSERT INTO tb_operators VALUES('$id_op', '$username', '$pwd', '$nama_operator', now(), now());";
     if(mysqli_query($conn, $sql)){
         echo json_encode(array('success' => true, 'msg' => 'Data Operator Berhasil Disimpan'));
     }else {

@@ -86,7 +86,7 @@ function getOperators(){
   $('#btnSave').click(function(){
     var idp = $('#id_op').val();
     var udp = $('#username_op').val();
-    var pdp = $('#username_op').val();
+    var pdp = $('#pass_op').val();
     var ndp = $('#nama_op').val();
     var newOp = {
       id_operator: idp,
@@ -104,6 +104,23 @@ function getOperators(){
     } else {
       swal('Oopss..!', 'Semua Field Tidak Boleh Kosong!', 'error');
     }
+  })
+
+  $('#delBtn').click(function(){
+    var dt = tb.rows('.selected').data();
+    if(dt.length == 0) return;
+    swal({
+        title: "Yakin Ingin Menghapus?",
+        text: "Kamu Akan Menghapus Data Operator : " + dt[0][0],
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#DD6B55",
+        confirmButtonText: "Ya, Hapus!",
+        closeOnConfirm: false
+      },
+      function(){
+        deleteOperator(dt[0][0]);
+    });
   })
 }
 
@@ -125,10 +142,12 @@ function cekFormState(state){
     resetForm();
     $('#judulModal').html("Tambah Data");
     $('#id_op').prop('disabled', false);
+    $('#username_op').prop('disabled', false);
     $('#pass_field').show();
   } else {
     $('#judulModal').html("Ubah Data");
     $('#id_op').prop('disabled', true);
+    $('#username_op').prop('disabled', true);
     $('#pass_field').hide();
   }
 }
@@ -230,6 +249,34 @@ function changePassword(id_op, old_pass, new_pass){
     },
     error: function(res){
       swal(res);
+    }
+  })
+}
+
+function deleteOperator(idop){
+  var idLog = idop;
+  var user = JSON.parse(window.localStorage.user);
+  if(user.id_operator == idop){
+    swal('Waduh!!!', 'Kamu Tidak Bisa Menghapus Akun Milikmu Sendiri!', 'warning');
+    return;
+  }
+  $.ajax({
+    method: 'POST',
+    url: serverUrl + 'operators/delete.php',
+    data: {
+      id_operator: idop
+    },
+    success: function(res){
+      var dt = JSON.parse(res);
+      if(dt.success){
+        swal('Deleted!', dt.msg, 'success');
+        $('#operatorsTable').DataTable().ajax.reload();
+      } else {
+        swal('Oopss..!', dt.msg, 'error');
+      }
+    },
+    error: function(res){
+      swal(res)
     }
   })
 }
