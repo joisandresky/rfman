@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>RFMan - RFID Token</title>
+    <title>RFMan - RFID Blacklisted</title>
 
     <!-- Bootstrap Core CSS -->
     <!-- <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet"> -->
@@ -140,7 +140,7 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-12">
-                        <h2 class="page-header">Token Users</h2>
+                        <h2 class="page-header">RFID Blacklisted</h2>
                     </div>
                     <!-- /.col-lg-12 -->
                 </div>
@@ -149,18 +149,15 @@
                         <div class="table-responsive">
                             <button id="tmbhBtn" class="btn btn-primary btn-sm"><i class="fa fa-plus"> Tambah</i></button>
                             <button id="refreshBtn" class="btn btn-success btn-sm"><i class="fa fa-refresh"> Refresh</i></button>
-                            <button id="cekInval" class="btn btn-info btn-sm"><i class="fa fa-user"></i> Cek Dosen Inval</button>
-                            <button id="delBtn" class="btn btn-danger btn-sm pull-right"><i class="fa fa-remove"> Hapus</i></button>
+                            <button id="delBtn" class="btn btn-warning btn-sm pull-right"><i class="fa fa-legal"> Pulihkan</i></button>
                             <br> <br>
-                            <table id="tokenTable2" class="table table-striped">
+                            <table id="blacklistTable" class="table table-striped">
                                 <thead>
                                     <tr>
-                                        <th>Token ID</th>
-                                        <th>Used</th>
+                                        <th>No.</th>
                                         <th>RFID</th>
-                                        <th>Status</th>
                                         <th>NPM/NID</th>
-                                        <th>Aksi Token</th>
+                                        <th>Status</th>
                                     </tr>
                                 </thead>
                                 <tbody></tbody>
@@ -173,42 +170,21 @@
             <!-- /.container-fluid -->
             <!-- Modal Tambah Data -->
             <div class="modal fade" id="panelTambahData" tabindex="-1" role="dialog">
-                <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="judulModal">Tambah Data</h4>
-                    </div>
-                    <div class="modal-body">
-                    <div class="form-group">
-                        <label for="token">Token</label>
-                        <input type="text" class="form-control" name="rfid" id="token" disabled>
-                    </div>
-                    <div class="form-group">
-                        <label for="nid">NPM/NID</label>
-                        <input type="text" class="form-control" name="nid" id="nid">
-                    </div>
-                    <div class="form-group">
-                      <label for="status_aksi">Status Token</label>
-                      <select name="st_aksi" id="st_aksi" class="form-control">
-                      </select>
-                    </div>
-                    <div id="aksi-tambahan">
-                      <div class="form-group">
-                        <label for="nid-p">NID Pengganti</label>
-                        <input type="text" name="nid-p" id="nid-p" class="form-control">
-                      </div>
-                    </div>
+            <div class="modal-dialog modal-sm" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                  <h4 class="modal-title" id="judulModal">Tambah Data</h4>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-success pull-left" id="btnCheck">Check NPM/NID</button>
-                    <button class="btn btn-info pull-left" id="btnCk2">Check NID Inval</button>
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
-                    <button type="button" class="btn btn-primary" id="btnSave">Simpan</button>
-                    </div>
-                </div><!-- /.modal-content -->
-                </div><!-- /.modal-dialog -->
-            </div><!-- /.modal -->
+                <div class="modal-body">
+                  <div class="form-group">
+                    <label for="rfid">RFID</label>
+                    <input type="text" name="rfid" id="rfid" class="form-control">
+                  </div>
+                </div>
+              </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+          </div><!-- /.modal -->
         </div>
         <!-- /#page-wrapper -->
 
@@ -233,7 +209,7 @@
     <script src="../dist/js/sb-admin-2.js"></script>
 
     <!-- My Custom Javascript -->
-    <script src="../js/src/token.js"></script>
+    <script src="../js/src/blacklist.js"></script>
 
     <script type="text/javascript">
       var user = JSON.parse(window.localStorage.user);

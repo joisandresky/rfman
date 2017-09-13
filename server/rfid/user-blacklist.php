@@ -5,7 +5,7 @@ header("Access-Control-Allow-Headers: Content-Type");
 include('../koneksi.php');
 
 //data kolom yang akan di tampilkan
-    $aColumns = array('rf_id', 'nid', 'status');
+    $aColumns = array('id_blacklist', 'rf_id', 'nid', 'status');
 
     //primary key
     $sIndexColumn = "id_blacklist";

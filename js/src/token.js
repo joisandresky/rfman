@@ -156,6 +156,7 @@ function getStatusKartu(nid){
         checkNI(nid);
       } else {
         swal('Ooppss..!', dt.msg, 'warning');
+        $('#btnSave').prop('disabled', true);
       }
     }
   })
