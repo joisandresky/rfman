@@ -1,13 +1,24 @@
 var serverUrl = "http://localhost/sb-admin/server/";
 var totalPerkuliahan = 0;
+var totalAlat = 0;
 $(document).ready(function(){
   getPerkuliahan();
   getTotalMhs();
+  getAlatAktif();
   $('#tglNow').html(getDate());
   setInterval(function(){
     getPerkuliahan();
     getTotalMhs();
-  }, 2000)
+    getAlatAktif();
+  }, 3000)
+  $('#panelListAlat').click(function(){
+    $('#panelList').modal('toggle');
+    if(totalAlat == 0){
+      $('#pesan').html("<p class='text-success text-center'>Belum ada Kelas Mulai</p>'");
+    } else {
+      $('#pesan').html("<p class='text-success text-center'>Alat Ada yang aktif</p>'");
+    }
+  })
 })
 
 function getDate(){
@@ -60,6 +71,22 @@ function getTotalMhs(){
     success: function(res){
       var total = JSON.parse(res);
       $('#totalMhs').html(parseInt(total));
+    },
+    error: function(res){
+      console.log(res)
+    }
+  })
+}
+
+function getAlatAktif(){
+  $.ajax({
+    method: 'GET',
+    url: serverUrl + 'dashboard/cek-alat-aktif.php',
+    success: function(res){
+      var dt = JSON.parse(res);
+      console.log(res)
+      $('#totalAK').html(dt)
+      totalAlat = dt;
     },
     error: function(res){
       console.log(res)

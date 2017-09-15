@@ -92,7 +92,7 @@ function getTokenUsers(){
             nidp: nidp
         }
         if(nid != ""){
-            saveToken(newToken);
+            checkMaxToken(newToken);
         } else {
             swal('Ooppss..!', 'Data Tidak Boleh Kosong', 'error');
         }
@@ -285,6 +285,25 @@ function saveToken(data){
           })
         }, 1800);
     });
+}
+
+function checkMaxToken(token){
+  var tkn = token;
+  $.ajax({
+      method: 'POST',
+      url: serverUrl + 'token/cek-mhs-token.php',
+      data: {
+        no_induk: tkn.no_induk
+      },
+      success: function(res){
+        var dt = JSON.parse(res);
+        if(dt.accept_request){
+          saveToken(tkn);
+        } else {
+          swal('Max!', dt.msg, 'warning');
+        }
+      }
+  })
 }
 
 function deleteToken(id){

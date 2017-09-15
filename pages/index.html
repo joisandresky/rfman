@@ -111,14 +111,14 @@
                         <li>
                           <a href="operators.html"><i class="fa fa-user" aria-hidden="true"></i> Operators</a>
                         </li>
-                        <li>
+                        <!-- <li>
                           <a href="#"><i class="fa fa-clipboard fa-fw"></i> Report <span class="fa arrow"></span></a>
                           <ul class="nav nav-second-level">
                               <li>
                                   <a href="report-mhs.html"><i class="fa fa-user"></i> Kehadiran Mahasiswa</a>
                               </li>
                           </ul>
-                        </li>
+                        </li> -->
                     </ul>
                 </div>
                 <!-- /.sidebar-collapse -->
@@ -135,7 +135,7 @@
             </div>
             <!-- /.row -->
             <div class="row">
-                <div class="col-lg-3 col-md-6" id="panelMahasiswa">
+                <div class="col-lg-offset-1 col-lg-3 col-md-6" id="panelMahasiswa">
                     <div class="panel panel-primary">
                         <div class="panel-heading">
                             <div class="row">
@@ -144,7 +144,7 @@
                                 </div>
                                 <div class="col-xs-9 text-right">
                                     <div class="huge" id="totalMhs">0</div>
-                                    <div>Mahasiswa Masuk</div>
+                                    <div>Total Mahasiswa Masuk</div>
                                 </div>
                             </div>
                         </div>
@@ -159,7 +159,7 @@
                                 </div>
                                 <div class="col-xs-9 text-right">
                                     <div class="huge" id="totalPK">0</div>
-                                    <div>Perkuliahan Berlangsung</div>
+                                    <div>Total Perkuliahan</div>
                                 </div>
                             </div>
                         </div>
@@ -170,17 +170,17 @@
                         <div class="panel-heading">
                             <div class="row">
                                 <div class="col-xs-3">
-                                    <i class="fa fa-shopping-cart fa-5x"></i>
+                                    <a href="#" id="panelListAlat"><i class="fa fa-university fa-5x" style="color: white;text-decoration: none;"></i></a>
                                 </div>
                                 <div class="col-xs-9 text-right">
-                                    <div class="huge">124</div>
-                                    <div>New Orders!</div>
+                                    <div class="huge" id="totalAK">0</div>
+                                    <div>Kelas Aktif</div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-6">
+                <!-- <div class="col-lg-3 col-md-6">
                     <div class="panel panel-red">
                         <div class="panel-heading">
                             <div class="row">
@@ -194,7 +194,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> -->
             </div>
             <!-- /.row -->
             <div class="row">
@@ -216,6 +216,64 @@
                 <!-- /.col-lg-8 -->
             </div>
             <!-- /.row -->
+
+            <!-- Modal Tambah Data -->
+            <div class="modal fade" id="panelList" tabindex="-1" role="dialog">
+                <div class="modal-dialog modal-sm" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                      <h4 class="modal-title" id="judulModal">List Kelas Aktif</h4>
+                    </div>
+                    <div class="modal-body">
+                      <div id="pesan"></div>
+                      <div class="form-group">
+                        <ul id="listAlat" class="list-group">
+
+                        </ul>
+                      </div>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
+                      <button type="button" class="btn btn-primary" id="btnKirim">Kirim</button>
+                    </div>
+                </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
+            </div><!-- /.modal -->
+            <!-- Modal Tambah Data -->
+            <div class="modal fade" id="panelTambahData" tabindex="-1" role="dialog">
+                <div class="modal-dialog modal-sm" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                      <h4 class="modal-title" id="judulModal">Kirim Pesan</h4>
+                    </div>
+                    <div class="modal-body">
+                      <div class="form-group">
+                        <label for="judul">Judul</label>
+                        <input type="text" name="judul" id="judul" class="form-control">
+                      </div>
+                      <div class="form-group">
+                        <label for="isi">Isi</label>
+                        <input type="text" name="isi" id="isi" class="form-control">
+                      </div>
+                      <div class="form-group">
+                        <label for="tipe_pesan">Tipe Pesan</label>
+                        <select name="tipe_pesan" id="tipe_pesan" class="form-control">
+                          <option value="1">ERROR</option>
+                          <option value="2">INFO</option>
+                          <option value="3">PERHATIAN</option>
+                          <option value="4">SUKSES</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
+                      <button type="button" class="btn btn-primary" id="btnKirim">Kirim</button>
+                    </div>
+                </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
+            </div><!-- /.modal -->
         </div>
         <!-- /#page-wrapper -->
 
