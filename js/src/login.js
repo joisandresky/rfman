@@ -1,4 +1,4 @@
-var serverUrl = 'http://localhost/sb-admin/server/';
+var serverUrl = "http://localhost/e-presents/server/";
 
 $(document).ready(function(){
   $('form').submit(function(e){

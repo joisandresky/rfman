@@ -1,4 +1,4 @@
-var serverUrl = "http://localhost/sb-admin/server/";
+var serverUrl = "http://localhost/e-presents/server/";
 var totalPerkuliahan = 0;
 var totalAlat = 0;
 $(document).ready(function(){

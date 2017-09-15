@@ -1,6 +1,6 @@
 var formState = 0;
 var id_opr = null;
-var serverUrl = 'http://localhost/sb-admin/server/';
+var serverUrl = "http://localhost/e-presents/server/";
 $(document).ready(function(){
   getOperators();
 });

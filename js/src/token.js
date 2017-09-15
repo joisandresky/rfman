@@ -1,5 +1,5 @@
 var token = '69';
-var serverUrl = 'http://localhost/sb-admin/server/';
+var serverUrl = "http://localhost/e-presents/server/";
 var dtAksi = '';
 var isCheck = false;
 
